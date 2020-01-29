@@ -14,17 +14,18 @@
         var token = null;
         // Assuming "?token=12sdadaassadd34wwe"
         var urlParams = new URLSearchParams(window.location.search);
-        // Check if has token parameter
+        // Check if token parameter exist
         if(urlParams.has('token')){
             token = urlParams.get('token');
             localStorage.setItem("other_domain_token", token);
-            // Replace url to remove token parameter from url
+            // Replace url
             window.location.href = window.location.origin + window.location.pathname;
         }
 
-        // Check if token exist from localStorage
+        // Retrieve token from localStorage
         token = localStorage.getItem("other_domain_token");
 
+        // Check if token exist from localStorage
         if(token){
             // Do staff
             document.getElementById('message').innerHTML = 'Authorized';
