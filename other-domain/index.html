@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Main Domain</h2>
+    <a href="http://localhost/cross-domain/main-domain/" id="main-domain">http://localhost/cross-domain/main-domain/</a>
+    <p id="message"></p>
+    <script>
+        var token = null;
+        // Assuming "?token=12sdadaassadd34wwe"
+        var urlParams = new URLSearchParams(window.location.search);
+        // Check if has token parameter
+        if(urlParams.has('token')){
+            token = urlParams.get('token');
+            localStorage.setItem("other_domain_token", token);
+            // Replace url to remove token parameter from url
+            window.location.href = window.location.origin + window.location.pathname;
+        }
+
+        // Check if token exist from localStorage
+        token = localStorage.getItem("other_domain_token");
+
+        if(token){
+            // Do staff
+            document.getElementById('message').innerHTML = 'Authorized';
+        }
+        else{
+            // Unauthorized
+            document.getElementById('message').innerHTML = 'Unauthorized';
+        }
+        
+    </script>
+</body>
+</html>
